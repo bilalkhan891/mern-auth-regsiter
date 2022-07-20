@@ -1,0 +1,17 @@
+# node modules
+node_modules
+/.pnp
+.pnp.js
+package-lock.json
+
+# client 
+clinet/node_modules
+client/package-lock.json
+
+# envoirnement files
+.env
+
+# config
+/config/default.json
+node_modules 
+client/node_modules 

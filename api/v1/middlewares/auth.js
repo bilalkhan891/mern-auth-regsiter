@@ -10,12 +10,11 @@ module.exports = Auth = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, config.get("jwtSecret"));
-    req.user = decoded.user;
+    // req.user = decoded.user;
+    return res.json({ something: decoded });
     next();
   } catch (err) {
     console.log(err.message);
-    if (err.message === "invalid token")
-      return res.status(401).json({ msg: err.message });
-    return res.status(401).json({ msg: "server error!" });
+    return res.status(401).json({ msg: err.message });
   }
 };

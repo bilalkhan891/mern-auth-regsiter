@@ -13,7 +13,7 @@ connectDB();
 app.use("/api", api);
 
 // Starting app
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`App is started on: http://localhost:${PORT}`);
 });

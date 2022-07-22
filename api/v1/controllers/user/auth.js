@@ -18,7 +18,7 @@ module.exports = authCtrl = async (req, res) => {
 
     const token = await jwt.sign(
       {
-        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 48,
+        exp: Math.floor(Date.now() / 1000) + 60,
         data: user,
       },
       config.get("jwtSecret")

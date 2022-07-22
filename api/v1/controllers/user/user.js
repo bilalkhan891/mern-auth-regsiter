@@ -25,11 +25,10 @@ module.exports = userCtrl = async (req, res) => {
     };
 
     user = await User.create(user);
-    delete user.password;
-
+    user = { ...user, password: "" };
     const token = await jwt.sign(
       {
-        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 48,
+        exp: Math.floor(Date.now() / 1000) + 60,
         data: user,
       },
       config.get("jwtSecret")

@@ -2,10 +2,15 @@ const User = require("../../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const { validationResult } = require("express-validator");
 
 const saltRounds = 10;
 
 module.exports = userCtrl = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.json({ errors: errors.array(), data: req.body });
+  }
   try {
     const { name, email, password } = req.body;
     // check if user already exists
@@ -15,7 +20,7 @@ module.exports = userCtrl = async (req, res) => {
     if (user) {
       return res
         .status(401)
-        .json({ msg: "User already exists!", type: "Danger" });
+        .json({ msg: "User already exists!", type: "danger" });
     }
 
     user = {
